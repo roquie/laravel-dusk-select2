@@ -1,6 +1,12 @@
 # laravel-dusk-select2
 Select2.js support for the Laravel Dusk testing
 
+## Install
+
+`composer require --dev roquie/laravel-dusk-select2`
+
+Now, u may use it!
+
 ## Usage
 
 For default select2:
