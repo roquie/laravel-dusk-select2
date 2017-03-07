@@ -21,11 +21,14 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2) {
     // if $value equal null, find random element and click him.
     // @todo: may be a couple of times move scroll to down (ajax paging)
     if (null === $value) {
+        $this->waitFor('.select2-results__options');
         $this->script(join('', [
-            'var _dusk_s2_elements = jQuery.find(\'.select2-results__options .select2-results__option\');',
+            "var _dusk_s2_elements = document.querySelectorAll('.select2-results__options .select2-results__option');",
+            "document.querySelector('.select2-results__options .select2-results__option--highlighted').classList.remove('select2-results__option--highlighted');",
             'var _dusk_s2_el = _dusk_s2_elements[Math.floor(Math.random()*(_dusk_s2_elements.length - 1))];',
-            '_dusk_s2_el.click();'
+            "_dusk_s2_el.classList.add('select2-results__option--highlighted');"
         ]));
+        $this->click('.select2-results__option--highlighted');
 
         return $this;
     }
