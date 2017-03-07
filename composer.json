@@ -1,0 +1,24 @@
+{
+  "name": "roquie/laravel-dusk-select2",
+  "description": "Select2.js support for the Laravel Dusk testing.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "roquie",
+      "email": "roquie0@gmail.com"
+    }
+  ],
+  "require": {
+    "laravel/dusk": "^1.0"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^3.2",
+    "laravel/dusk": "^1.0"
+  },
+  "autoload": {
+    "files": [
+      "src/macro.php"
+    ]
+  }
+}
