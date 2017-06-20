@@ -39,7 +39,6 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2) {
             $element->sendKeys($item);
             sleep($wait);
             $this->click('.select2-results__option--highlighted');
-            $element->clear();
         }
 
         return $this;
