@@ -11,10 +11,10 @@ Select2.js support for the Laravel Dusk testing
 
 Now, u may use it!
 
-## Upgrade from 0.* to 1.*
+## Upgrade from 0.1.* to 1.0.*
 
 1. Update your `roquie/laravel-dusk-select2` dependency to `^1.0` in your `composer.json` file.
-2. Remove ` + .selector` from first parameter, also see [last parameter](./src/macro.php#L17).
+2. Remove ` + .select2` from first parameter, also see [last parameter](./src/macro.php#L17).
 
 ## Usage
 
