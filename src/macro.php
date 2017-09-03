@@ -14,9 +14,9 @@ use Laravel\Dusk\Browser;
  * $value - option value, may be multiple, eg. ['foo', 'bar']
  * $wait  - count of seconds for ajax loading.
  */
-Browser::macro('select2', function ($field, $value = null, $wait = 2) {
+Browser::macro('select2', function ($field, $value = null, $wait = 2, $suffix = ' + .select2') {
     /** @var Browser $this */
-    $this->click($field);
+    $this->click($field . $suffix);
 
     // if $value equal null, find random element and click him.
     // @todo: may be a couple of times move scroll to down (ajax paging)
@@ -34,7 +34,7 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2) {
     }
 
     // check if search field exists and fill it.
-    if ($element = $this->element('.select2-container .select2-search__field')) {
+    if ($element = $this->element('.select2-container.select2-container--open .select2-search__field')) {
         foreach ((array) $value as $item) {
             $element->sendKeys($item);
             sleep($wait);
