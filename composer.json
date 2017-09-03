@@ -10,15 +10,21 @@
     }
   ],
   "require": {
-    "laravel/dusk": "^1.0"
   },
   "require-dev": {
     "symfony/var-dumper": "^3.2",
-    "laravel/dusk": "^1.0"
+    "laravel/dusk": "^2.0",
+    "phpunit/phpunit": "^6.3",
+    "laravel/laravel": "^5.5"
   },
   "autoload": {
     "files": [
       "src/macro.php"
+    ]
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests"
     ]
   }
 }
