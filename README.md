@@ -70,11 +70,11 @@ $browse->select2('@selector', ['foo', 'bar'], 5);
  * [x] Add Laravel Dusk tests for Laravel Dusk extend feature ;)
  * [x] Add gif demonstration how it works.
  * [x] May be use `+ select2` out of the box?.
- * [ ] Travis CI.
+ * [x] Integration with Circle CI.
 
 ## Tests
 
-[@taylorotwell](https://github.com/taylorotwell) don't kill the kittens, Laravel Dusk also should be used outside of framework.  
+[@taylorotwell](https://github.com/taylorotwell) don't kill the kittens, Laravel Dusk also should be used outside of the framework.  
 
 * `cd tests`
 * `php -S localhost:8888 tests/index.html`
