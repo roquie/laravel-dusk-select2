@@ -1,5 +1,28 @@
-# laravel-dusk-select2
-Select2.js support for the Laravel Dusk testing
+<br>
+<p align="center">
+  <img height="80" src="./logo.png"> <br><br>
+  <a href="https://circleci.com/gh/roquie/laravel-dusk-select2/tree/master">
+    <img src="https://circleci.com/gh/roquie/laravel-dusk-select2/tree/master.svg?style=svg">
+  </a>
+  <a href="https://packagist.org/packages/roquie/laravel-dusk-select2">
+    <img src="https://poser.pugx.org/roquie/laravel-dusk-select2/v/stable">
+  </a>
+  <a href="https://packagist.org/packages/roquie/laravel-dusk-select2">
+    <img src="https://poser.pugx.org/roquie/laravel-dusk-select2/downloads">
+  </a>
+  <a href="https://packagist.org/packages/roquie/laravel-dusk-select2">
+    <img src="https://poser.pugx.org/roquie/laravel-dusk-select2/license">
+  </a>
+  <a href="https://packagist.org/packages/roquie/laravel-dusk-select2">
+    <img src="https://poser.pugx.org/roquie/laravel-dusk-select2/composerlock">
+  </a>
+</p>
+
+# Introduction
+
+Select2.js support for the Laravel Dusk testing.
+
+## Demo
 
 <p align="center">
   <img height="350" src="./demo.gif">
@@ -24,7 +47,7 @@ For default select2:
 $browse->select2('@selector');
 ```
 
-`@selector` class name of your `<select>` html tag. <br>
+`@selector` class name of your `<select>` html tag. <br><br>
 If value not passed, it be selected automatically.
 
 Another way, if need concrete value:
@@ -47,14 +70,14 @@ $browse->select2('@selector', ['foo', 'bar'], 5);
  * [x] Add Laravel Dusk tests for Laravel Dusk extend feature ;)
  * [x] Add gif demonstration how it works.
  * [x] May be use `+ select2` out of the box?.
- * [ ] Travis CI.
+ * [x] Integration with Circle CI.
 
 ## Tests
 
-[@taylorotwell](https://github.com/taylorotwell) don't kill the kittens, Laravel Dusk also should be used outside of framework.  
+[@taylorotwell](https://github.com/taylorotwell) don't kill the kittens, Laravel Dusk also should be used outside of the framework.  
 
 * `cd tests`
-* `php -S localhost:8081 tests/index.html`
+* `php -S localhost:8888 tests/index.html`
 * `vendor/bin/phpunit`
 
 If u using MacOS, before running `phpunit`, run `vendor/laravel/dusk/bin/chromedriver-mac`.

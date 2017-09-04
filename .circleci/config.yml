@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.1.8-browsers
+    working_directory: ~/laravel
+    steps:
+      - checkout
+      - run: composer self-update
+      - run: composer install -n --ignore-platform-reqs
+
+      - run:
+          name: Start Chrome Driver
+          command: ./vendor/laravel/dusk/bin/chromedriver-linux
+          background: true
+
+      - run:
+          name: Run Laravel Server
+          command: php -S localhost:8888 -t tests/
+          background: true
+
+      - run:
+          name: Run Laravel Dusk Tests
+          command: vendor/bin/phpunit
