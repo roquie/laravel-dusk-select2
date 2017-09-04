@@ -18,9 +18,16 @@ abstract class DuskTestCase extends \Laravel\Dusk\TestCase
     {
         parent::setUp();
 
-        Browser::$baseUrl = 'http://localhost:8081';
+        Browser::$baseUrl = 'http://localhost:8888';
         Browser::$storeScreenshotsAt = __DIR__ . '/Browser/screenshots';
         Browser::$storeConsoleLogAt = __DIR__ . '/Browser/console';
+    }
+
+    public static function prepare()
+    {
+        if (env('DUSK_START_CHROMEDRIVER', true)) {
+            static::startChromeDriver();
+        }
     }
 
     /**
@@ -31,7 +38,7 @@ abstract class DuskTestCase extends \Laravel\Dusk\TestCase
     protected function driver()
     {
         return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::safari()
+            'http://localhost:9515', DesiredCapabilities::chrome()
         );
     }
 }
