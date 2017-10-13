@@ -28,6 +28,8 @@ Select2.js support for the Laravel Dusk testing.
   <img height="350" src="./demo.gif">
 </p>
 
+P.S. This gif slow because I forgot to set [third](https://github.com/roquie/laravel-dusk-select2/blob/master/src/macro.php#L15) parameter to one or zero.
+
 ## Install
 
 `composer require --dev roquie/laravel-dusk-select2`
