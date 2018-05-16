@@ -35,13 +35,15 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2, $suffix = 
 
     // check if search field exists and fill it.
     if ($element = $this->element('.select2-container.select2-container--open .select2-search__field')) {
-        foreach ((array) $value as $item) {
-            $element->sendKeys($item);
-            sleep($wait);
-            $this->click('.select2-results__option--highlighted');
-        }
+        try {
+            foreach ((array) $value as $item) {
+                $element->sendKeys($item);
+                sleep($wait);
+                $this->click('.select2-results__option--highlighted');
+            }
 
-        return $this;
+            return $this;
+        } catch (\Exception $exception) {}
     }
 
     // another way - w/o search field.
