@@ -45,7 +45,8 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2, $suffix = 
     }
 
     // another way - w/o search field.
-    $this->script("jQuery.find(\".select2-results__options .select2-results__option[role=treeitem]:contains('{$value}')\")[0].click()");
+    $field = \str_replace('\\', '\\\\', $field);
+    $this->script("jQuery(\"$field\").val((function () { return jQuery(\"$field option:contains('$value')\").val(); })()).trigger('change')");
 
     return $this;
 });
