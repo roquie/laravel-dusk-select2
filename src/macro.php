@@ -7,6 +7,7 @@
  */
 
 use Laravel\Dusk\Browser;
+use Facebook\WebDriver\Exception\ElementNotVisibleException;
 
 /**
  * Register simple macros for the Laravel Dusk.
@@ -43,7 +44,9 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2, $suffix = 
             }
 
             return $this;
-        } catch (\Exception $exception) {}
+        } catch (ElementNotVisibleException $exception) {
+            // ignore the exception and try another way
+        }
     }
 
     // another way - w/o search field.

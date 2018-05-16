@@ -16,13 +16,14 @@ class Select2Test extends DuskTestCase
             $browser
                 ->visit('/')
                 ->select2('.js-example-basic-single', 'Calif')
-                ->assertSee('California')
-                ->select2('.js-example-basic-hide-search')
+                ->assertSeeIn('.js-example-basic-single + .select2', 'California')
+                ->select2('.js-example-basic-hide-search', 'Nev')
+                ->assertSeeIn('.js-example-basic-hide-search + .select2', 'Nevada')
                 ->select2('.js-example-basic-multiple', 'Wy')
                 ->waitFor('.select2-selection__choice')
                 ->select2('.js-example-basic-multiple')
                 ->select2('.js-data-example-ajax', 'laravel')
-                ->assertSee('laravel')
+                ->waitForText('laravel')
             ;
         });
     }
