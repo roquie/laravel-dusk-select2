@@ -7,6 +7,7 @@
  */
 
 use Laravel\Dusk\Browser;
+use Facebook\WebDriver\Exception\ElementNotVisibleException;
 
 /**
  * Register simple macros for the Laravel Dusk.
@@ -35,17 +36,22 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2, $suffix = 
 
     // check if search field exists and fill it.
     if ($element = $this->element('.select2-container.select2-container--open .select2-search__field')) {
-        foreach ((array) $value as $item) {
-            $element->sendKeys($item);
-            sleep($wait);
-            $this->click('.select2-results__option--highlighted');
-        }
+        try {
+            foreach ((array) $value as $item) {
+                $element->sendKeys($item);
+                sleep($wait);
+                $this->click('.select2-results__option--highlighted');
+            }
 
-        return $this;
+            return $this;
+        } catch (ElementNotVisibleException $exception) {
+            // ignore the exception and try another way
+        }
     }
 
     // another way - w/o search field.
-    $this->script("jQuery.find(\".select2-results__options .select2-results__option:contains('{$value}')\")[0].click()");
+    $field = \str_replace('\\', '\\\\', $field);
+    $this->script("jQuery(\"$field\").val((function () { return jQuery(\"$field option:contains('$value')\").val(); })()).trigger('change')");
 
     return $this;
 });
