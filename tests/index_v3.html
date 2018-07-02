@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select2 Laravel Dusk testing</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.css" />
+  <style>
+    select {
+      width: 400px;
+    }
+  </style>
+</head>
+<body>
+
+<h3>Simple select2</h3>
+<select id="js-example-basic-single">
+  <option value="AL">Alabama</option>
+  <option value="WY">Wyoming</option>
+  <option value="CA">California</option>
+  <option value="NV">Nevada</option>
+  <option value="WA">Washington</option>
+</select>
+
+<h3>Hide search select2</h3>
+<select id="js-example-basic-hide-search">
+  <option value="AL">Alabama</option>
+  <option value="WY">Wyoming</option>
+  <option value="CA">California</option>
+  <option value="NV">Nevada</option>
+  <option value="WA">Washington</option>
+</select>
+
+<h3>Multipe select2</h3>
+<select id="js-example-basic-multiple" multiple>
+  <option value="AL">Alabama</option>
+  <option value="WY">Wyoming</option>
+  <option value="CA">California</option>
+  <option value="NV">Nevada</option>
+  <option value="WA">Washington</option>
+</select>
+
+<h3>Select2 with AJAX</h3>
+<input type="hidden" id="js-data-example-ajax" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#js-example-basic-single").select2();
+    $("#js-example-basic-multiple").select2();
+    $("#js-example-basic-hide-search").select2({
+      minimumResultsForSearch: Infinity
+    });
+
+    function formatRepo (repo) {
+      if (repo.loading) return repo.text;
+
+      var markup = "<div class='select2-result-repository clearfix'>" +
+        "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' /></div>" +
+        "<div class='select2-result-repository__meta'>" +
+        "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+
+      if (repo.description) {
+        markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
+      }
+
+      markup += "<div class='select2-result-repository__statistics'>" +
+        "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo.forks_count + " Forks</div>" +
+        "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+        "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+        "</div>" +
+        "</div></div>";
+
+      return markup;
+    }
+
+    function formatRepoSelection (repo) {
+      return repo.full_name || repo.text;
+    }
+
+    $("#js-data-example-ajax").select2({
+      ajax: {
+        url: "https://api.github.com/search/repositories",
+        dataType: 'json',
+        quietMillis: 250,
+        data: function (term, page) {
+          return {
+            q: term
+          };
+        },
+        results: function (data, page) {
+          return {
+            results: data.items
+          };
+        },
+        cache: true
+      },
+      escapeMarkup: function (markup) { return markup; },
+      minimumInputLength: 1,
+      formatResult: formatRepo,
+      formatSelection: formatRepoSelection
+    });
+  });
+</script>
+</body>
+</html>
