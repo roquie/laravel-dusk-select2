@@ -20,7 +20,7 @@
 
 # Introduction
 
-Select2.js support for the Laravel Dusk testing.
+Select2.js support for the Laravel Dusk testing. Support Select2 v3 and Select2 v4 versions.
 
 ## Demo
 
