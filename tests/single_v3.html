@@ -21,11 +21,18 @@
   <option value="WA">Washington</option>
 </select>
 
+<div id="close-events">
+</div>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $("#js-example-basic-single").select2();
+  });
+
+  $('#js-example-basic-single').on('select2-close', function () {
+    document.getElementById('close-events').innerHTML += '<br><br>Select2 calling close event normally.<br>';
   });
 </script>
 </body>
