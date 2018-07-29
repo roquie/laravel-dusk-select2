@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select2 Laravel Dusk testing</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
+  <link rel="stylesheet" href="//select2.github.io/css/s2-docs.css" />
+  <style>
+    select {
+      width: 400px;
+    }
+  </style>
+</head>
+<body>
+
+<h3>Simple select2</h3>
+<select class="js-example-basic-single">
+  <option value="AL">Alabama</option>
+  <option value="WY">Wyoming</option>
+  <option value="CA">California</option>
+  <option value="NV">Nevada</option>
+  <option value="WA">Washington</option>
+</select>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".js-example-basic-single").select2();
+  });
+</script>
+</body>
+</html>
