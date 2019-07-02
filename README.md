@@ -25,16 +25,31 @@ Select2.js support for the Laravel Dusk testing. Support Select2 v3 and Select2 
 ## Demo
 
 <p align="center">
-  <img height="350" src="./demo.gif">
+  <img height="350" src="./dusk-1.gif">
 </p>
-
-P.S. This gif slow because I forgot to set [third](https://github.com/roquie/laravel-dusk-select2/blob/master/src/macro.php#L15) parameter to one or zero.
 
 ## Install
 
 `composer require --dev roquie/laravel-dusk-select2`
 
 Now, u may use it!
+
+## Upgrade from 1.* to 2.0
+
+`2.0` version of this package potentially has full compatibility with select2 v.3 and v.4.
+But, I deleted a lot of code regarding select2 v.3. Tests passed for both versions, but with 
+some changes.
+
+### Migration
+1. Update your `roquie/laravel-dusk-select2` dependency to `^2.0` in your `composer.json` file.
+2. That's all ...
+
+### Changes
+1. Project migrated to `konsulting/dusk-standalone` package to run tests. It more better solution, compares to download full laravel framework.
+2. Tests updated
+3. Minimal PHP version is `7.1` (!)
+4. Updated dependencies to latest versions.
+5. Fixed bug when search input founded but is not displayed.
 
 ## Upgrade from 0.1.* to 1.0.*
 
@@ -60,7 +75,7 @@ $browse->select2('@selector', 'you_text_value');
 For multiple mode usage like this:
 ```php
 $browse->select2('@selector', ['foo', 'bar'], 5);
-// the last parameter - count of seconds for ajax loading before choice item.
+// the last parameter - maximum count of seconds for ajax loading before choice item.
 ```
 
 ## Examples
@@ -80,10 +95,32 @@ $browse->select2('@selector', ['foo', 'bar'], 5);
 
 * `cd tests`
 * `php -S localhost:8888 tests/index.html`
+* `vendor/bin/dusk-updater`
 * `vendor/bin/phpunit`
 
-If u using MacOS, before running `phpunit`, run `vendor/laravel/dusk/bin/chromedriver-mac`.
+If u have Docker, just run `make test`.
 
 ## License 
 
-[MIT](./LICENSE)
+MIT License
+
+Copyright (c) 2017-2019 roquie0@gmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+

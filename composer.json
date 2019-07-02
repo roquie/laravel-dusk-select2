@@ -12,10 +12,11 @@
   "require": {
   },
   "require-dev": {
-    "symfony/var-dumper": "^3.2",
-    "laravel/dusk": "^2.0",
-    "phpunit/phpunit": "^6.3",
-    "laravel/laravel": "^5.5"
+    "php": ">=7.1",
+    "konsulting/dusk-standalone": "^5.0",
+    "symfony/var-dumper": "~4.0",
+    "laravel/dusk": "^5.2",
+    "phpunit/phpunit": "^8"
   },
   "autoload": {
     "files": [

@@ -1,33 +1,27 @@
-<?php
-/**
- * Created by Roquie.
- * E-mail: roquie0@gmail.com
- * GitHub: Roquie
- * Date: 9/4/17
- */
+<?php declare(strict_types=1);
 
+use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Laravel\Dusk\Browser;
+use Konsulting\DuskStandalone\TestCase;
 
-abstract class DuskTestCase extends \Laravel\Dusk\TestCase
+abstract class DuskTestCase extends TestCase
 {
     use CreatesApplication;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
-        Browser::$baseUrl = 'http://localhost:8888';
         Browser::$storeScreenshotsAt = __DIR__ . '/Browser/screenshots';
         Browser::$storeConsoleLogAt = __DIR__ . '/Browser/console';
     }
 
-    public static function prepare()
+    // Set the base url for the browser requests
+    protected function baseUrl()
     {
-        if (env('DUSK_START_CHROMEDRIVER', true)) {
-            static::startChromeDriver();
-        }
+        return 'http://localhost:8888';
     }
 
     /**
@@ -37,8 +31,21 @@ abstract class DuskTestCase extends \Laravel\Dusk\TestCase
      */
     protected function driver()
     {
+        $arguments = [
+            '--disable-gpu',
+            '--window-size=1920,1080',
+            '--no-sandbox'
+        ];
+
+        if (getenv('CHROME_HEADLESS') === 'true') {
+            $arguments[] = '--headless';
+        }
+
+        $options = (new ChromeOptions())->addArguments($arguments);
+
         return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::chrome()
-        );
+            'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
+            ChromeOptions::CAPABILITY, $options
+        ));
     }
 }
