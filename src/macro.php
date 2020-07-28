@@ -28,7 +28,7 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2, $suffix = 
     // if $value equal null, find random element and click him.
     // @todo: may be a couple of times move scroll to down (ajax paging)
     if (null === $value) {
-        $this->waitFor($highlightedSelector);
+        $this->waitFor($highlightedSelector, $wait);
         $this->script(implode('', [
             "var _dusk_s2_elements = document.querySelectorAll('$selectableSelector');",
             "document.querySelector('$highlightedSelector').classList.remove('$highlightedClass');",
