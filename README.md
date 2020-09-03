@@ -66,9 +66,9 @@ $browse->select2('@selector', ['foo', 'bar'], 5);
 
 ## Changelog
 
-Without breaking changes.
-
 ### Upgrade from 2.0 to 2.1
+
+Without breaking changes.
 
 #### Migration
 1. Update your `roquie/laravel-dusk-select2` dependency to `^2.1` in your `composer.json` file.
