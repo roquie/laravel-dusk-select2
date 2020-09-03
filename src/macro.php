@@ -1,7 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 use Laravel\Dusk\Browser;
-use Facebook\WebDriver\Exception\ElementNotVisibleException;
+use Facebook\WebDriver\Exception\{
+    ElementNotInteractableException,
+    WebDriverException,
+    ElementNotVisibleException
+};
 
 /**
  * Register simple macros for the Laravel Dusk.
@@ -52,8 +58,11 @@ Browser::macro('select2', function ($field, $value = null, $wait = 2, $suffix = 
             }
 
             return $this;
-        } catch (ElementNotVisibleException $exception) {
-            // ignore the exception and try another way
+        } catch (WebDriverException $exception) {
+            if (!$exception instanceof ElementNotInteractableException || !$exception instanceof ElementNotVisibleException) {
+                throw $exception;
+            }
+            // ... otherwise ignore the exception and try another way
         }
     }
 

@@ -13,9 +13,6 @@
   <a href="https://packagist.org/packages/roquie/laravel-dusk-select2">
     <img src="https://poser.pugx.org/roquie/laravel-dusk-select2/license">
   </a>
-  <a href="https://packagist.org/packages/roquie/laravel-dusk-select2">
-    <img src="https://poser.pugx.org/roquie/laravel-dusk-select2/composerlock">
-  </a>
 </p>
 
 # Introduction
@@ -33,28 +30,6 @@ Select2.js support for the Laravel Dusk testing. Support Select2 v3 and Select2 
 `composer require --dev roquie/laravel-dusk-select2`
 
 Now, u may use it!
-
-## Upgrade from 1.* to 2.0
-
-`2.0` version of this package potentially has full compatibility with select2 v.3 and v.4.
-But, I deleted a lot of code regarding select2 v.3. Tests passed for both versions, but with 
-some changes.
-
-### Migration
-1. Update your `roquie/laravel-dusk-select2` dependency to `^2.0` in your `composer.json` file.
-2. That's all ...
-
-### Changes
-1. Project migrated to `konsulting/dusk-standalone` package to run tests. It more better solution, compares to download full laravel framework.
-2. Tests updated
-3. Minimal PHP version is `7.1` (!)
-4. Updated dependencies to latest versions.
-5. Fixed bug when search input founded but is not displayed.
-
-## Upgrade from 0.1.* to 1.0.*
-
-1. Update your `roquie/laravel-dusk-select2` dependency to `^1.0` in your `composer.json` file.
-2. Remove ` + .select2` from first parameter, also see [last parameter](./src/macro.php#L17).
 
 ## Usage
 
@@ -89,22 +64,58 @@ $browse->select2('@selector', ['foo', 'bar'], 5);
  * [x] May be use `+ select2` out of the box?.
  * [x] Integration with Circle CI.
 
+## Changelog
+
+Without breaking changes.
+
+### Upgrade from 2.0 to 2.1
+
+#### Migration
+1. Update your `roquie/laravel-dusk-select2` dependency to `^2.1` in your `composer.json` file.
+
+#### Changes
+1. This project moved back to native dependency `laravel/dusk` package and does not depend on full Laravel Framework like before in 1.*.
+2. Tests updated
+3. Migrated to new phpunit schema.
+4. Updated dependencies to latest versions.
+5. Removed `composer.lock`
+6. Fixed CI build
+7. Tests moved to namespace.
+8. Replaced Docker Image who runs these code.
+
+### Upgrade from 1.* to 2.0
+
+`2.0` version of this package potentially has full compatibility with select2 v.3 and v.4.
+But, I deleted a lot of code regarding select2 v.3. Tests passed for both versions, but with 
+some changes.
+
+#### Migration
+1. Update your `roquie/laravel-dusk-select2` dependency to `^2.0` in your `composer.json` file.
+2. That's all ...
+
+#### Changes
+1. Project migrated to `konsulting/dusk-standalone` package to run tests. It more better solution, compares to download full laravel framework.
+2. Tests updated
+3. Minimal PHP version is `7.1` (!)
+4. Updated dependencies to latest versions.
+5. Fixed a bug when search input founded but is not displayed.
+
+### Upgrade from 0.1.* to 1.0.*
+
+1. Update your `roquie/laravel-dusk-select2` dependency to `^1.0` in your `composer.json` file.
+2. Remove ` + .select2` from first parameter, also see [last parameter](./src/macro.php#L17).
+
 ## Tests
 
-[@taylorotwell](https://github.com/taylorotwell) don't kill the kittens, Laravel Dusk also should be used outside of the framework.  
+Believe me, it's better to run it all in Docker:
 
-* `cd tests`
-* `php -S localhost:8888 tests/index.html`
-* `vendor/bin/dusk-updater`
-* `vendor/bin/phpunit`
-
-If u have Docker, just run `make test`.
+* `make composer test`
 
 ## License 
 
 MIT License
 
-Copyright (c) 2017-2019 roquie0@gmail.com
+Copyright (c) 2017-2020 roquie0@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

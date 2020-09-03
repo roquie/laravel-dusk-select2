@@ -1,6 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+namespace Laravel\Dusk\Select2\Tests\Browser;
 
 use Laravel\Dusk\Browser;
+use Laravel\Dusk\Select2\Tests\DuskTestCase;
 
 class Select2Test extends DuskTestCase
 {
@@ -23,9 +28,6 @@ class Select2Test extends DuskTestCase
         });
     }
 
-    /**
-     * @throws Throwable
-     */
     public function testShouldSupportSelect2v3()
     {
         $this->browse(function (Browser $browser) {

@@ -1,19 +1,25 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+namespace Laravel\Dusk\Select2\Tests;
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Laravel\Dusk\Browser;
-use Konsulting\DuskStandalone\TestCase;
+use Laravel\Dusk\Concerns\ProvidesBrowser;
+use PHPUnit\Framework\TestCase;
 
 abstract class DuskTestCase extends TestCase
 {
-    use CreatesApplication;
+    use ProvidesBrowser;
 
     public function setUp(): void
     {
         parent::setUp();
 
+        Browser::$baseUrl = $this->baseUrl();
         Browser::$storeScreenshotsAt = __DIR__ . '/Browser/screenshots';
         Browser::$storeConsoleLogAt = __DIR__ . '/Browser/console';
     }
@@ -43,9 +49,10 @@ abstract class DuskTestCase extends TestCase
 
         $options = (new ChromeOptions())->addArguments($arguments);
 
-        return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
-            ChromeOptions::CAPABILITY, $options
-        ));
+        $capabilities = DesiredCapabilities::chrome()
+//            ->setCapability(ChromeOptions::CAPABILITY_W3C, $options)
+            ->setCapability(ChromeOptions::CAPABILITY, $options);
+
+        return RemoteWebDriver::create('http://localhost:9515', $capabilities);
     }
 }

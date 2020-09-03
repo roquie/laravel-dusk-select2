@@ -13,10 +13,9 @@
   },
   "require-dev": {
     "php": ">=7.1",
-    "konsulting/dusk-standalone": "^5.0",
-    "symfony/var-dumper": "~4.0",
-    "laravel/dusk": "^5.2",
-    "phpunit/phpunit": "^8"
+    "symfony/var-dumper": "^4 || ^5",
+    "laravel/dusk": "^5 || ^6",
+    "phpunit/phpunit": "^8 || ^9"
   },
   "autoload": {
     "files": [
@@ -24,8 +23,8 @@
     ]
   },
   "autoload-dev": {
-    "classmap": [
-      "tests"
-    ]
+    "psr-4": {
+      "Laravel\\Dusk\\Select2\\Tests\\": "tests/"
+    }
   }
 }

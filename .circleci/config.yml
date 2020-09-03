@@ -3,14 +3,14 @@ version: 2
 jobs:
   build:
     machine:
-      docker_layer_caching: false 
+      docker_layer_caching: false
     steps:
       - checkout
 
       - run:
           name: Run tests
           command: |
-            make test
+            make composer test
 
 workflows:
   version: 2
